@@ -28,9 +28,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import tw.edu.pu.s1091802.googlemap.databinding.ActivityMapsBinding;
 
@@ -40,8 +37,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public static final int ROUND = 10;
     private GoogleMap mMap;
     public GoogleApiClient googleApiClient;
-    private ChildEventListener mChildEventListener;
-    private DatabaseReference mUsers;
     Marker marker;
     public FusedLocationProviderClient fusedLocationProviderClient;
     private LocationManager locMgr;
@@ -78,9 +73,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        ChildEventListener mChildEventListener;
-        mUsers= FirebaseDatabase.getInstance().getReference("0");
-        mUsers.push().setValue(marker);
         Button nextPageBtn = (Button)findViewById(R.id.button);  //跳轉頁面
         nextPageBtn.setOnClickListener(new View.OnClickListener()
         {
